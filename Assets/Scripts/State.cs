@@ -6,7 +6,7 @@ public class State {
 
     public string Name { get; set; }
     private List<Transition> transitions;
-    private GameObject gameObject;
+    public GameObject gameObject;
     private delegate void methodToRun();
     private State next;
     public State(string name) {

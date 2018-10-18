@@ -8,14 +8,16 @@ public class FSM : MonoBehaviour {
 	State current;
 	State start;
 	State end;
+	public string name;
 	// Use this for initialization
 	void Start () {
+		name = "";
 		State temp = new State("1");
 		State temp2 = new State("2");
 		temp.addTransition(new Condition("check1", true), temp2);
 		temp2.addTransition(new Condition("check2", true), temp);
 		current = temp;
-		Debug.Log(current.Name);
+		Debug.Log("Set Name:" + current.Name);
 //		StartCoroutine("stateBuilder");
 	}
 
@@ -26,7 +28,14 @@ public class FSM : MonoBehaviour {
 			yield return null;
 		}
 	}
-	
+
+	public List<State> GetStateList()
+	{
+		List<State> states = new List<State>();
+		states.Add(current);
+		return states;
+	}
+
 	// Update is called once per frame
 	void Update () {
 		bool check = false;
