@@ -4,19 +4,15 @@ using UnityEngine;
 
 public class FSM : MonoBehaviour {
 
-	private State[] states;
+	public List<State> states;
 	State current;
 	State start;
 	State end;
 	public string name;
 	// Use this for initialization
-	void Start () {
+	void Awake () {
+		current = new State("current");
 		name = "";
-		State temp = new State("1");
-		State temp2 = new State("2");
-		temp.addTransition(new Condition("check1", true), temp2);
-		temp2.addTransition(new Condition("check2", true), temp);
-		current = temp;
 		Debug.Log("Set Name:" + current.Name);
 //		StartCoroutine("stateBuilder");
 	}
@@ -29,9 +25,10 @@ public class FSM : MonoBehaviour {
 		}
 	}
 
-	public List<State> GetStateList()
+	public List<State> BuildStateList()
 	{
-		List<State> states = new List<State>();
+		states = new List<State>();
+		current = new State("current start");
 		states.Add(current);
 		return states;
 	}
